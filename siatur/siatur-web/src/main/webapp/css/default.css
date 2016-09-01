@@ -1,0 +1,22 @@
+@CHARSET "ISO-8859-1";
+/*******************************************************************************
+Estilos para la plantilla main-template
+*******************************************************************************/
+
+.header{
+    height:33px;
+    margin-top:0px;
+    vertical-align:top;
+    margin-left: auto;
+    margin-right: auto;
+    width:95%;
+}
+
+.content{
+    height:500px;
+    margin-top:0px;
+    vertical-align:top;
+    margin-left: auto;
+    margin-right: auto;
+    width:95%;
+}
