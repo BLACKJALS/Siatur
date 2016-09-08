@@ -11,22 +11,15 @@
 <h:head>
 	<title id="title">#{msgs['siatur.title']}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css" />
-	<link rel="stylesheet" type="text/css" href="./css/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
 </h:head>
 
 <h:body style="overflow-y: scroll;">
-	<f:view contentType="text/html">
-		<h:panelGroup styleClass="header" layout="block">
-			<ui:include src="/resources/templates/header.xhtml" />
-		</h:panelGroup>
-		<h:panelGroup id="container" styleClass="container" layout="block">
-		<ui:insert name="content"/>
-		</h:panelGroup>
-		<h:panelGroup styleClass="footer" layout="block">
-			<ui:include src="/resources/templates/footer.xhtml" />
-		</h:panelGroup>
-	</f:view>
+	<h:panelGrid columns="1" width="100%">
+		<h:panelGrid colums="1" styleClass="header">Encabezado</h:panelGrid>
+		<h:panelGrid colums="1" styleClass="content">contenido</h:panelGrid>
+		<h:panelGrid colums="1" styleClass="footer">pie</h:panelGrid>
+	</h:panelGrid>
 </h:body>
 
 </html>
