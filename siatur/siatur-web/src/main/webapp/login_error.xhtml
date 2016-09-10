@@ -8,15 +8,7 @@
 
 	<ui:define name="content">
 		<h:panelGroup styleClass="login">
-			<h:outputText value="#{msgs['login.title']}" />
-			<form action="j_security_check" method="post">
-				<p/>
-					Usuario : <input type="text" name="j_username" /><br/>
-				<p/>
-					Contraseña : <input type="password" name="j_password" /><br/>
-				<p/>
-					<input type="submit" name="submit" value="Ingresar" />
-			</form>
+			<h:outputText value="Error en el usuario o contraseña, intentelo de nuevo" />			
 		</h:panelGroup>
 	</ui:define>
 
