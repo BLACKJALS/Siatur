@@ -141,5 +141,5 @@ SELECT rol_nombre, 'Roles'
   FROM usuario 	JOIN autorizacion ON (aut_usuario = usu_id and aut_estado = 1)
 		JOIN funcionalidad_rol ON (fur_id = aut_funcionalidad_rol and fur_estado = 1)
 		JOIN rol ON (rol_id = fur_rol and rol_estado = 1)
- WHERE usu_usuario = 'admin'
+ WHERE usu_usuario = 'admin';
 
