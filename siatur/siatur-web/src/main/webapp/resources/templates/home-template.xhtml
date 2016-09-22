@@ -8,11 +8,30 @@
 
 	<ui:define name="menuBar">
 		<h:form>
-			<h:panelGroup>
-				Aqui va el menu
+			<h:panelGroup styleClass="menuContent">
+			
+				<ace:menuBar id="menubar" autoSubmenuDisplay="true">
+					<ace:submenu label="Configuración">
+                    <ace:menuItem 	value="Gestionar Roles" 
+                    				action="pages/gestionar_roles.xhtml"
+                    				>
+                    </ace:menuItem>
+                    <ace:menuItem value="Item 2">
+                        <ace:ajax event="activate" execute="@this" render="@form" />
+                    </ace:menuItem>
+                </ace:submenu>
+				</ace:menuBar>
+				
 			</h:panelGroup>
 
-			<h:panelGroup>
+
+		</h:form>
+
+	</ui:define>
+	
+	<ui:define name="usuario">
+		<h:form>
+			<h:panelGroup styleClass="usuarioContent">
 				<h:outputText
 					value="Bienvenido #{sessionBean.nombreCompletoUsuario} (Última sesión:)  IP: " />
 				<h:outputText value="    " />
@@ -23,9 +42,7 @@
 				<h:commandButton alt="Salir" title="Salir"
 					styleClass="btn_s_salir" action="#{sessionBean.logout}" />
 			</h:panelGroup>
-
 		</h:form>
-
-	</ui:define>
+	</ui:define>	
 
 </ui:composition>

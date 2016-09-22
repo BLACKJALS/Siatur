@@ -6,6 +6,11 @@ body {
 	padding: 0px;
 }
 
+body .ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
 .page {
 	display: flex;
 	display: -webkit-flex;
@@ -14,7 +19,6 @@ body {
 	-webkit-align-items: flex-start;
 	-ms-flex-align: start;
 	align-items: flex-start;
-
 	width: 100%;
 }
 
@@ -24,28 +28,62 @@ body {
 	width: 100%;
 	min-height: 40px;
 	z-index: 1;
+	
+	display: flex;
+	display: -webkit-flex;
+
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+	
+    -webkit-flex-direction: row;
+    flex-direction: row;
+	
 }
 
-.logo{
+.header .logo {
 	width: 200px;
-	height: 50px;
+	height: 100%;
+}
+
+.header .menu{
+	display: flex;
+	display: -webkit-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-self: center;
+    align-self: center;	
+	
+	height: 100%;	
+}
+
+.menuContent{
+	
+}
+
+.header .usuario{
+	display: flex;
+	display: -webkit-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-self: center;
+    align-self: center;	
+	
+	height: 100%;	
+	
+}
+
+.usuarioContent{
+	
 }
 
 .content {
 	background-color: #2a7cbb;
 	width: 100%;
-	min-height: 500px;
-
+	min-height: 400px;
 	display: flex;
 	display: -webkit-flex;
-	
-	flex-flow: column wrap;
-	-webkit-flex-flow: column wrap;
-
 	align-items: center;
-	
-	padding-top: 150px;
-	
+	justify-content: center;
 }
 
 .footer {
@@ -57,14 +95,24 @@ body {
 /*******************************************************************************
 Estilos para login
 *******************************************************************************/
- .login{
+.login {
 	display: flex;
 	display: -webkit-flex;
-	
-	flex-flow: column wrap;
-	-webkit-flex-flow: column wrap;
-
+	flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
 	align-items: center;
-	
-	padding: 4em 2em;
- }
+	max-width: 50%;
+}
+
+.login .ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+/*******************************************************************************
+Estilos para funcionalidades
+*******************************************************************************/
+.contentFeature{
+	width: 80%;
+	height: 80%;
+}
