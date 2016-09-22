@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.security.Principal;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -17,7 +17,7 @@ import co.edu.uan.app.siatur.util.FacesUtils;
 
 
 @ManagedBean(name=SessionBean.BEAN_NAME,eager=true)
-@ApplicationScoped
+@SessionScoped
 public class SessionBean implements Serializable {
 	public static final String BEAN_NAME = "sessionBean";
     private static final Logger logger = LoggerFactory.getLogger(SessionBean.class);
