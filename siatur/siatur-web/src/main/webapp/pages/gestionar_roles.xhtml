@@ -7,25 +7,73 @@
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 
 	<ui:define name="content">
-	
+
 		<h:form styleClass="contentFeature">
 
 			<ace:panel header="Gestionar Roles">
-			
-				<h:panelGrid columns="1">
-					<!-- NOTICE -To run this page you must have also ICEfaces ACE components library on your classpath (project dependencies). -->
-					<ace:linkButton id="linkButton1" value="Home" action="home"></ace:linkButton>
-						href="http://wiki.icesoft.org/display/ICE/ICEfaces+Overview"></ace:linkButton>
-					<ace:linkButton id="linkButton2" value="General Documentation"
-						href="http://wiki.icesoft.org/display/ICE/ICEfaces+Documentation"></ace:linkButton>
-					<ace:linkButton id="linkButton3" value="ICEfaces Demos"
-						href="http://www.icesoft.org/demos/icefaces-demos.jsf"></ace:linkButton>
-					<ace:linkButton id="linkButton4" value="Tutorials"
-						href="http://www.icesoft.org/community/tutorials-samples.jsf"></ace:linkButton>
-					<ace:linkButton id="linkButton5" value="ACE components"
-						href="http://wiki.icesoft.org/display/ICE/ACE+Components"></ace:linkButton>
-				</h:panelGrid>
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableRoles" value="#{rolBean.rolAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="rolId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="rolNombre" value="#{_item.nombre}" />
+						</ace:column>
+
+						<ace:column id="estado">
+							<f:facet name="header">
+								<h:outputText value="Estado" />
+							</f:facet>
+							<h:outputText id="rolEstado" value="#{_item.estado}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{rolBean.addRol}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+
+
+								<!-- 								<h:commandButton styleClass="btn_s_add" -->
+								<!-- 									onclick="ice.ace.instance('dialogRol').show();" type="button" /> -->
+							</f:facet>
+
+							<h:commandButton styleClass="btn_s_editar"
+								onclick="ice.ace.instance('dialogRol').hide();" type="button" />
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
 			</ace:panel>
+
+			<!-- Sección del Popup para capturar los datos del Rol -->
+			<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
+				header="#{rolBean.headerDialog}" draggable="true" modal="true"
+				width="400">
+
+				<h:panelGrid>
+
+					<ace:textEntry id="dialogRolNombre" value="#{rolBean.rol.nombre}" label="Nombre: "
+						labelPosition="left" required="true" requiredIndicator="(*)">
+					</ace:textEntry>
+
+					<ace:pushButton id="dialogRolBtnGuardar"
+						action="#{rolBean.saveAction}" label="Guardar">
+					</ace:pushButton>
+
+				</h:panelGrid>
+			</ace:dialog>
 
 		</h:form>
 
