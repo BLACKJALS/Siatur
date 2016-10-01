@@ -116,3 +116,50 @@ Estilos para funcionalidades
 	width: 80%;
 	height: 80%;
 }
+
+
+
+/*******************************************************************************
+Estilos para los botones de acciones en el sistema
+*******************************************************************************/
+.ice-pushbutton .first-child button{
+	padding: 0.2em 0.2em;
+}
+
+.btn_s_add{
+    background-image:url(../img/btn_s_add.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:19px;
+    vertical-align: middle;
+    width: 18px;
+    cursor:pointer;
+    background-color: transparent;
+}
+.btn_s_add-dis{
+    background-image:url(../img/btn_s_add_off.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:19px;
+    width: 18px;
+    cursor:not-allowed;
+    background-color: transparent;
+}
+.btn_s_editar{
+    background-image:url(../img/btn_s_editar.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:16px;
+    width: 16px;
+    cursor:pointer;
+    background-color: transparent;
+}
+.btn_s_editar-dis{
+    background-image:url(../img/btn_s_editar_off.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:16px;
+    width: 16px;
+    cursor:not-allowed;
+    background-color: transparent;
+}

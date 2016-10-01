@@ -162,6 +162,7 @@
                     </pool>
                     <security>
                         <user-name>postgres</user-name>
+						<password></password>
                     </security>
                 </datasource>
                 <drivers>

@@ -29,21 +29,11 @@ public class SessionBean implements Serializable {
 	@PostConstruct
 	public void init() {
 	}
-	
-	private void initUsuario(){
-//        logger.log(Level.INFO, "El principal "+this.principal);
-        
-        if (this.principal != null) {
-//            logger.log(Level.INFO, "El principal "+this.principal + " es: "+this.principal.getName());
-		}
-
-	}
-	
+		
 	public String getNombreCompletoUsuario(){
         
 		this.principal = FacesUtils.getPrincipal();
-        logger.info("El principal "+this.principal);
-        
+       
 		return this.principal !=null ? this.principal.getName(): "NO USUARIO";
 	}
 	
