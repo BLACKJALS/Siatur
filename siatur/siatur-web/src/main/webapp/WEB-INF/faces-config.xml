@@ -19,17 +19,14 @@
 			<from-view-id>*</from-view-id>
 			<navigation-case>
 				<from-action>home</from-action>
-<!-- 				<from-outcome>success</from-outcome> -->
 				<to-view-id>/faces/home.xhtml</to-view-id>
 			</navigation-case>
 			<navigation-case>
 				<from-action>gestionar_usuarios</from-action>
-<!-- 				<from-outcome>success</from-outcome> -->
 				<to-view-id>/faces/pages/gestionar_usuarios.xhtml</to-view-id>
 			</navigation-case>
 			<navigation-case>
 				<from-action>gestionar_roles</from-action>
-<!-- 				<from-outcome>success</from-outcome> -->
 				<to-view-id>/faces/pages/gestionar_roles.xhtml</to-view-id>
 			</navigation-case>
 		</navigation-rule>

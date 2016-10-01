@@ -26,6 +26,7 @@ public class RolBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final String BEAN_NAME = "rolBean";
+	public static final String PAGE_NAME = "gestionar_roles";
 	private static final Logger logger = LoggerFactory.getLogger(RolBean.class);
 
 	@EJB
@@ -47,6 +48,9 @@ public class RolBean implements Serializable {
 
 	private void openPopup() {
 		this.visiblePopup = true;
+	}
+	private void closedPopup() {
+		this.visiblePopup = false;
 	}
 
 	public List<Rol> getRolAll() {
@@ -71,7 +75,7 @@ public class RolBean implements Serializable {
 
 	}
 
-	public void saveAction() {
+	public String saveAction() {
 		logger.info("Entró a saveAction(ActionEvent event)");
 
 		if (validateSaveAction()) {
@@ -79,6 +83,7 @@ public class RolBean implements Serializable {
 			try {
 				rolService.save(this.rol);
 				this.getRolAll();
+				this.closedPopup();
 
 			} catch (Exception e) {
 				FacesUtils.addMessageError("Guardar Rol", "Error al guardar el Rol", e.getMessage());
@@ -87,6 +92,7 @@ public class RolBean implements Serializable {
 		}
 
 		logger.info("Saliendo de saveAction()");
+		return PAGE_NAME;
 	}
 
 	private boolean validateSaveAction() {
