@@ -13,7 +13,7 @@
 			<ace:panel header="Gestionar Requisitos">
 			
 				<h:panelGroup>
-					<ace:dataTable id="dataTableRequisitos" value="#{reqBean.reqAll}"
+					<ace:dataTable id="dataTableReq" value="#{reqBean.reqAll}"
 						var="_item">
 
 						<ace:column id="id">
@@ -54,13 +54,13 @@
 			</ace:panel>
 
 			<!-- Sección del Popup para capturar los datos del Req -->
-			<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
-				header="#{rolBean.headerDialog}" draggable="true" modal="true"
+			<ace:dialog id="dialogReq" visible="#{reqBean.visiblePopup}"
+				header="#{reqBean.headerDialog}" draggable="true" modal="true"
 				width="400">
 
 				<h:panelGrid>
 
-					<ace:textEntry id="dialogReqNombre" value="#{rolBean.req.nombre}" label="Nombre: "
+					<ace:textEntry id="dialogReqNombre" value="#{reqBean.req.nombre}" label="Nombre: "
 						labelPosition="left" required="true" requiredIndicator="(*)">
 					</ace:textEntry>
 

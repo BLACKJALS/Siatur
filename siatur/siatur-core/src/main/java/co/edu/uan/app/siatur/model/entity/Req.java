@@ -98,7 +98,7 @@ public class Req implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Rol [nombre=" + nombre + ", estado=" + descripcion + ", editable=" + editable + "]";
+		return "Requisitos [nombre=" + nombre + ", descripcion=" + descripcion + ", editable=" + editable + "]";
 	}
 
 }

@@ -14,9 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.edu.uan.app.siatur.model.entity.Req;
-import co.edu.uan.app.siatur.model.entity.Rol;
 import co.edu.uan.app.siatur.model.pojo.Constantes;
-import co.edu.uan.app.siatur.model.service.RolService;
+import co.edu.uan.app.siatur.model.service.ReqService;
 import co.edu.uan.app.siatur.util.FacesUtils;
 
 @ManagedBean(name = ReqBean.BEAN_NAME, eager = true)
@@ -31,7 +30,7 @@ public class ReqBean implements Serializable {
 	private static final Logger logger = LoggerFactory.getLogger(ReqBean.class);
 
 	@EJB
-	RolService rolService;
+	ReqService reqService;
 
 	private Req req;
 	private List<Req> listReq;
@@ -75,7 +74,7 @@ public class ReqBean implements Serializable {
 		logger.info("Saliendo de addReq(req:" + req + ")");
 
 	}
-
+/*
 	public String saveAction() {
 		logger.info("Entró a saveAction(ActionEvent event)");
 
@@ -95,6 +94,7 @@ public class ReqBean implements Serializable {
 		logger.info("Saliendo de saveAction()");
 		return PAGE_NAME;
 	}
+*/
 
 	private boolean validateSaveAction() {
 		logger.info("Entró a validateSaveAction()");
@@ -103,16 +103,16 @@ public class ReqBean implements Serializable {
 		String detail = "";
 
 		if (this.req == null) {
-			detail = "No existe un objeto ROL inicializado";
+			detail = "No existe un objeto Req inicializado";
 			valid = false;
 		} else if (StringUtils.isBlank(this.req.getNombre())) {
-			detail = "Se debe ingresar el nombre del rol";
+			detail = "Se debe ingresar el nombre del req";
 			valid = false;
 		}
 
 		if (!valid) {
-			FacesUtils.addMessageError("Guardar Rol", "Error al guardar el Rol", detail);
-			logger.error("Error validando el rol a guardar. "+detail);
+			FacesUtils.addMessageError("Guardar Req", "Error al guardar el Req", detail);
+			logger.error("Error validando el req a guardar. "+detail);
 		}
 
 		logger.info("Saliendo de validateSaveAction()");
