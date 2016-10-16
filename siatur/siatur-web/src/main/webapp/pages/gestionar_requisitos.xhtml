@@ -13,59 +13,59 @@
 			<ace:panel header="Gestionar Requisitos">
 			
 				<h:panelGroup>
-					<ace:dataTable id="dataTableRoles" value="#{rolBean.rolAll}"
+					<ace:dataTable id="dataTableRequisitos" value="#{reqBean.reqAll}"
 						var="_item">
 
 						<ace:column id="id">
 							<f:facet name="header">
 								<h:outputText value="ID" />
 							</f:facet>
-							<h:outputText id="rolId" value="#{_item.id}" />
+							<h:outputText id="reqId" value="#{_item.id}" />
 						</ace:column>
 
 						<ace:column id="nombre">
 							<f:facet name="header">
 								<h:outputText value="Nombre" />
 							</f:facet>
-							<h:outputText id="rolNombre" value="#{_item.nombre}" />
+							<h:outputText id="reqNombre" value="#{_item.nombre}" />
 						</ace:column>
 
-						<ace:column id="estado">
+						<ace:column id="descripcion">
 							<f:facet name="header">
-								<h:outputText value="Estado" />
+								<h:outputText value="Descripcion" />
 							</f:facet>
-							<h:outputText id="rolEstado" value="#{_item.estado}" />
+							<h:outputText id="reqDescripcion" value="#{_item.descripcion}" />
 						</ace:column>
 
 						<ace:column id="acciones">
 							<f:facet name="header">
 
 								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
-									actionListener="#{rolBean.addRol}" type="button">
+									actionListener="#{reqBean.addReq}" type="button">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
 							</f:facet>
 
 							<h:commandButton styleClass="btn_s_editar"
-								onclick="ice.ace.instance('dialogRol').hide();" type="button" />
+								onclick="ice.ace.instance('dialogReq').hide();" type="button" />
 						</ace:column>
 					</ace:dataTable>
 				</h:panelGroup>
 			</ace:panel>
 
-			<!-- Sección del Popup para capturar los datos del Rol -->
+			<!-- Sección del Popup para capturar los datos del Req -->
 			<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
 				header="#{rolBean.headerDialog}" draggable="true" modal="true"
 				width="400">
 
 				<h:panelGrid>
 
-					<ace:textEntry id="dialogRolNombre" value="#{rolBean.rol.nombre}" label="Nombre: "
+					<ace:textEntry id="dialogReqNombre" value="#{rolBean.req.nombre}" label="Nombre: "
 						labelPosition="left" required="true" requiredIndicator="(*)">
 					</ace:textEntry>
 
-					<ace:pushButton id="dialogRolBtnGuardar"
-						action="#{rolBean.saveAction}" label="Guardar">
+					<ace:pushButton id="dialogReqBtnGuardar"
+						action="#{reqBean.saveAction}" label="Guardar">
 					</ace:pushButton>
 
 				</h:panelGrid>

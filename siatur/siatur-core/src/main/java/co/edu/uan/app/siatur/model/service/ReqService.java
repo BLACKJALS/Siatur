@@ -8,22 +8,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import co.edu.uan.app.siatur.model.entity.Req;
 import co.edu.uan.app.siatur.model.entity.Rol;
 
 @Remote
 @Stateless
-public class RolService {
+public class ReqService {
 
 	@PersistenceContext(unitName = "siatur-unit")
 	private EntityManager em;
 
-	public List<Rol> getAll() {
-		CriteriaQuery<Rol> criteria = this.em.getCriteriaBuilder().createQuery(Rol.class);
-		return this.em.createQuery(criteria.select(criteria.from(Rol.class))).getResultList();
+	public List<Req> getAll() {
+		CriteriaQuery<Req> criteria = this.em.getCriteriaBuilder().createQuery(Req.class);
+		return this.em.createQuery(criteria.select(criteria.from(Req.class))).getResultList();
 
 	}
-	
-	
+
 	public Rol save(Rol rol) throws IllegalArgumentException, Exception{
 
 		Rol newRol = null;
