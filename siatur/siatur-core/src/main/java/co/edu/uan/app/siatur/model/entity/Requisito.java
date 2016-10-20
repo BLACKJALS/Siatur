@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class Req implements Serializable{
+public class Requisito implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -87,7 +87,7 @@ public class Req implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Req other = (Req) obj;
+		Requisito other = (Requisito) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

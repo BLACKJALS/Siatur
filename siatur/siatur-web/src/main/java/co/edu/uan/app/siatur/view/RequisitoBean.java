@@ -13,27 +13,27 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import co.edu.uan.app.siatur.model.entity.Req;
+import co.edu.uan.app.siatur.model.entity.Requisito;
 import co.edu.uan.app.siatur.model.pojo.Constantes;
-import co.edu.uan.app.siatur.model.service.ReqService;
+import co.edu.uan.app.siatur.model.service.RequisitoService;
 import co.edu.uan.app.siatur.util.FacesUtils;
 
-@ManagedBean(name = ReqBean.BEAN_NAME, eager = true)
+@ManagedBean(name = RequisitoBean.BEAN_NAME, eager = true)
 @SessionScoped
-public class ReqBean implements Serializable {
+public class RequisitoBean implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final String BEAN_NAME = "reqBean";
 	public static final String PAGE_NAME = "gestionar_requisitos";
-	private static final Logger logger = LoggerFactory.getLogger(ReqBean.class);
+	private static final Logger logger = LoggerFactory.getLogger(RequisitoBean.class);
 
 	@EJB
-	ReqService reqService;
+	RequisitoService reqService;
 
-	private Req req;
-	private List<Req> listReq;
+	private Requisito req;
+	private List<Requisito> listReq;
 	private boolean visiblePopup;
 
 	private String headerDialog;
@@ -53,7 +53,7 @@ public class ReqBean implements Serializable {
 		this.visiblePopup = false;
 	}
 
-	public List<Req> getReqAll() {
+	public List<Requisito> getReqAll() {
 
 		this.listReq = reqService.getAll();
 		return this.listReq;
@@ -62,7 +62,7 @@ public class ReqBean implements Serializable {
 	public void addReq(ActionEvent event) {
 		logger.info("Entro a addReq(event:" + event + ")");
 
-		this.req = new Req();
+		this.req = new Requisito();
 		this.req.setVersion(1);
 		this.req.setEditable(Boolean.TRUE);
 		this.req.setDescripcion("");
@@ -127,7 +127,7 @@ public class ReqBean implements Serializable {
 		this.headerDialog = headerDialog;
 	}
 
-	public Req getReq() {
+	public Requisito getReq() {
 
 		logger.info("this.req = " + this.req);
 		if (this.req != null)
@@ -136,7 +136,7 @@ public class ReqBean implements Serializable {
 		return this.req;
 	}
 
-	public void setReq(Req req) {
+	public void setReq(Requisito req) {
 		this.req = req;
 	}
 

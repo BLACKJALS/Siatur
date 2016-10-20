@@ -8,19 +8,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
-import co.edu.uan.app.siatur.model.entity.Req;
+import co.edu.uan.app.siatur.model.entity.Requisito;
 
 
 @Remote
 @Stateless
-public class ReqService {
+public class RequisitoService {
 
 	@PersistenceContext(unitName = "siatur-unit")
-	private EntityManager em;
+	private EntityManager e;
 
-	public List<Req> getAll() {
-		CriteriaQuery<Req> criteria = this.em.getCriteriaBuilder().createQuery(Req.class);
-		return this.em.createQuery(criteria.select(criteria.from(Req.class))).getResultList();
+	public List<Requisito> getAll() {
+		CriteriaQuery<Requisito> criteria = this.e.getCriteriaBuilder().createQuery(Requisito.class);
+		return this.e.createQuery(criteria.select(criteria.from(Requisito.class))).getResultList();
 
 	}
 /*

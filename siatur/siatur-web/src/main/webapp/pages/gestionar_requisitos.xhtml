@@ -13,7 +13,7 @@
 			<ace:panel header="Gestionar Requisitos">
 			
 				<h:panelGroup>
-					<ace:dataTable id="dataTableReq" value="#{reqBean.reqAll}"
+					<ace:dataTable id="dataTableRequisitos" value="#{reqBean.reqAll}"
 						var="_item">
 
 						<ace:column id="id">
@@ -64,9 +64,9 @@
 						labelPosition="left" required="true" requiredIndicator="(*)">
 					</ace:textEntry>
 
-					<ace:pushButton id="dialogReqBtnGuardar"
+<!-- 					<ace:pushButton id="dialogReqBtnGuardar"
 						action="#{reqBean.saveAction}" label="Guardar">
-					</ace:pushButton>
+					</ace:pushButton> -->
 
 				</h:panelGrid>
 			</ace:dialog>
