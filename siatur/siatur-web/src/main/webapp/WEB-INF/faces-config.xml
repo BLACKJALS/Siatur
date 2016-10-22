@@ -38,6 +38,10 @@
 				<from-action>gestionar_requisitos</from-action>
 				<to-view-id>/faces/pages/gestionar_requisitos.xhtml</to-view-id>
 			</navigation-case>
+			<navigation-case>
+				<from-action>gestionar_temporadas</from-action>
+				<to-view-id>/faces/pages/gestionar_temporadas.xhtml</to-view-id>
+			</navigation-case>
 		</navigation-rule>
 
 

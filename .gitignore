@@ -1,2 +1,4 @@
 /build/
 siatur/siatur-web/src/main/webapp/WEB-INF/jboss-web.xml
+
+*.prefs
