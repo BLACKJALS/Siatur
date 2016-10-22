@@ -22,7 +22,8 @@ public class RolService {
 		return this.em.createQuery(criteria.select(criteria.from(Rol.class))).getResultList();
 
 	}
-
+	
+	
 	public Rol save(Rol rol) throws IllegalArgumentException, Exception{
 
 		Rol newRol = null;
