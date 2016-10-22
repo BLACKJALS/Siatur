@@ -5,9 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,8 +19,8 @@ import co.edu.uan.app.siatur.model.pojo.Constantes;
 import co.edu.uan.app.siatur.model.service.RolService;
 import co.edu.uan.app.siatur.util.FacesUtils;
 
-@ManagedBean(name = RolBean.BEAN_NAME, eager = true)
-@SessionScoped
+@ManagedBean(name = RolBean.BEAN_NAME)
+@CustomScoped(value = "#{window}")
 public class RolBean implements Serializable {
 	/**
 	 * 
@@ -102,14 +103,18 @@ public class RolBean implements Serializable {
 		String detail = "";
 
 		if (this.rol == null) {
+			
 			detail = "No existe un objeto ROL inicializado";
 			valid = false;
+			
 		} else if (StringUtils.isBlank(this.rol.getNombre())) {
+			
 			detail = "Se debe ingresar el nombre del rol";
 			valid = false;
 		}
 
 		if (!valid) {
+			
 			FacesUtils.addMessageError("Guardar Rol", "Error al guardar el Rol", detail);
 			logger.error("Error validando el rol a guardar. "+detail);
 		}
@@ -146,5 +151,28 @@ public class RolBean implements Serializable {
 	public void setVisiblePopup(boolean visiblePopup) {
 		this.visiblePopup = visiblePopup;
 	}
+	
+	public void setNombreRol(String nombre){
+		if(this.rol != null){
+			this.rol.setNombre(nombre);
+		}
+	}
+	
+	public String getNombreRol(){
+		String nombre = "";
+		if(this.rol != null){
+			nombre = this.rol.getNombre();
+		}
+		
+		return nombre;
+	}
+	
+	/*
+     *  if closing with a client side api, ensure a listener is used to
+     *  update the visible value on the server
+     */
+    public void closeFAjax(AjaxBehaviorEvent event){
+        this.visiblePopup=false;
+    }
 
 }

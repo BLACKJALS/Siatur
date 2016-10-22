@@ -8,7 +8,7 @@
 
 	<ui:define name="content">
 
-		<h:form styleClass="contentFeature">
+		<h:form id="form1" styleClass="contentFeature">
 
 			<ace:panel header="Gestionar Roles">
 
@@ -40,10 +40,10 @@
 						<ace:column id="acciones">
 							<f:facet name="header">
 
-								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
-									actionListener="#{rolBean.addRol}" type="button">
-									<f:ajax execute="@this" render="@all" />
-								</h:commandButton>
+									<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+										actionListener="#{rolBean.addRol}" type="button">
+										<f:ajax execute="@this" render="@all"/>
+									</h:commandButton>
 							</f:facet>
 
 							<h:commandButton styleClass="btn_s_editar"
@@ -52,25 +52,28 @@
 					</ace:dataTable>
 				</h:panelGroup>
 			</ace:panel>
-
-			<!-- Sección del Popup para capturar los datos del Rol -->
-			<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
-				header="#{rolBean.headerDialog}" draggable="true" modal="true"
-				width="400">
-
-				<h:panelGrid>
-
-					<ace:textEntry id="dialogRolNombre" value="#{rolBean.rol.nombre}" label="Nombre: "
-						labelPosition="left" required="true" requiredIndicator="(*)">
-					</ace:textEntry>
-
-					<ace:pushButton id="dialogRolBtnGuardar"
-						action="#{rolBean.saveAction}" label="Guardar">
-					</ace:pushButton>
-
-				</h:panelGrid>
-			</ace:dialog>
-
+		</h:form>
+		
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Rol -->
+				<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
+					header="#{rolBean.headerDialog}" draggable="true" modal="true"
+					width="400">
+	
+					<h:panelGrid>
+	
+						<ace:textEntry id="dialogRolNombre" value="#{rolBean.nombreRol}" label="Nombre: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+	
+						<ace:pushButton id="dialogRolBtnGuardar"
+							action="#{rolBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+	
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
 		</h:form>
 
 	</ui:define>
