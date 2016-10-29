@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -20,12 +22,13 @@ import co.edu.uan.app.siatur.model.service.TemporadaService;
 import co.edu.uan.app.siatur.util.FacesUtils;
 
 @ManagedBean(name = TemporadaBean.BEAN_NAME, eager = true)
-@SessionScoped
+@CustomScoped(value = "#{window}")
 public class TemporadaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	public static final String BEAN_NAME = "temporadaBean";
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioBean.class);
+	public static final String PAGE_NAME = "gestionar_temporadas";
+	private static final Logger logger = LoggerFactory.getLogger(TemporadaBean.class);
 	
 
 	@EJB
@@ -49,6 +52,11 @@ public class TemporadaBean implements Serializable{
 		this.visiblePopup = true;
 	}
 	
+	private void closedPopup() {
+		this.visiblePopup = false;
+	}
+	
+	
 	
 	public List<Temporada> getTemporadaAll() {
 		this.listTemporada = temporadaService.getAll();
@@ -58,7 +66,7 @@ public class TemporadaBean implements Serializable{
 	
 	
 
-	public void addUsuario(ActionEvent event) {
+	public void addTemporada(ActionEvent event) {
 		logger.info("Entro a addUsuario(event:" + event + ")");
 
 		this.temporada = new Temporada();
@@ -75,7 +83,7 @@ public class TemporadaBean implements Serializable{
 	
 	
 	
-	public void saveAction() {
+	public String saveAction() {
 		logger.info("Entró a saveAction(ActionEvent event)");
 
 		if (validateSaveAction()) {
@@ -91,6 +99,7 @@ public class TemporadaBean implements Serializable{
 		}
 
 		logger.info("Saliendo de saveAction()");
+		return PAGE_NAME;
 	}
 	
 	
@@ -150,5 +159,42 @@ public class TemporadaBean implements Serializable{
 	public void setVisiblePopup(boolean visiblePopup) {
 		this.visiblePopup = visiblePopup;
 	}
+	
+	public void setFechaTemporada(String fecha){
+		if(this.temporada != null){
+			this.temporada.setFecha(fecha);
+		}
+	}
+	
+	public String getFechaTemporada(){
+		String Fecha = "";
+		if(this.temporada != null){
+			Fecha = this.temporada.getFecha();
+		}
+		
+		return Fecha;
+	}
+	
+	public void setClasificacionTemporada(String clasificacion){
+		if(this.temporada != null){
+			this.temporada.setClasificacion(clasificacion);;
+		}
+	}
+	
+	public String getClasificacionTemporada(){
+		String clasificacion = "";
+		if(this.temporada != null){
+			clasificacion = this.temporada.getClasificacion();
+		}
+		
+		return clasificacion;
+	}
+	
+	
+	
+	
+	public void closeFAjax(AjaxBehaviorEvent event){
+        this.visiblePopup=false;
+    }
 
 }

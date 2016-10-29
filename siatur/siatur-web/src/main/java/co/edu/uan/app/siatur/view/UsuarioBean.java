@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,11 +23,12 @@ import co.edu.uan.app.siatur.util.FacesUtils;
 
 
 @ManagedBean(name = UsuarioBean.BEAN_NAME, eager = true)
-@SessionScoped
+@CustomScoped(value = "#{window}")
 public class UsuarioBean   implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	public static final String BEAN_NAME = "usuarioBean";
+	public static final String PAGE_NAME = "gestionar_usuarios";
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioBean.class);
 	
 
@@ -50,6 +53,10 @@ public class UsuarioBean   implements Serializable{
 		this.visiblePopup = true;
 	}
 	
+	private void closedPopup() {
+		this.visiblePopup = false;
+	}
+	
 	
 	public List<Usuario> getUsuarioAll() {
 		this.listUsuario = usuarioService.getAll();
@@ -63,10 +70,9 @@ public class UsuarioBean   implements Serializable{
 		logger.info("Entro a addUsuario(event:" + event + ")");
 
 		this.usuario = new Usuario();
-		this.usuario.setClave("");
-		this.usuario.setUsuario("");
+	    this.usuario.setVersion(1);
 		this.usuario.setNombre("");
-		this.usuario.setApellido("");;
+		this.usuario.setApellido("");
 		this.usuario.setDireccion("");
 		this.usuario.setIdentificacion("");
 		this.usuario.setCorreo("");
@@ -81,7 +87,7 @@ public class UsuarioBean   implements Serializable{
 	
 	
 	
-	public void saveAction() {
+	public String saveAction() {
 		logger.info("Entró a saveAction(ActionEvent event)");
 
 		if (validateSaveAction()) {
@@ -89,7 +95,8 @@ public class UsuarioBean   implements Serializable{
 			try {
 				usuarioService.save(this.usuario);
 				this.getUsuarioAll();
-
+				this.closedPopup();
+				
 			} catch (Exception e) {
 				FacesUtils.addMessageError("Guardar Usuario", "Error al guardar el Usuario", e.getMessage());
 				logger.error("Error al guardar Usuario. "+e.getMessage());
@@ -97,6 +104,7 @@ public class UsuarioBean   implements Serializable{
 		}
 
 		logger.info("Saliendo de saveAction()");
+		return PAGE_NAME;
 	}
 	
 	
@@ -111,6 +119,7 @@ public class UsuarioBean   implements Serializable{
 		if (this.usuario == null) {
 			detail = "No existe un objeto USUARIO inicializado";
 			valid = false;
+			
 		} else if (StringUtils.isBlank(this.usuario.getNombre())) {
 			detail = "Se debe ingresar el nombre del usuario";
 			valid = false;
@@ -156,6 +165,158 @@ public class UsuarioBean   implements Serializable{
 	public void setVisiblePopup(boolean visiblePopup) {
 		this.visiblePopup = visiblePopup;
 	}
+	
+	
+	public void setPkUsuario(long id){
+		if(this.usuario != null){
+			this.usuario.setId(id);
+		}
+	}
+	
+	public long getPkUsuario(){
+		long nombre = 0;
+		if(this.usuario != null){
+			nombre = this.usuario.getId();
+		}
+		
+		return nombre;
+	}
+	
+	
+	public void setNombreUsuario(String nombre){
+		if(this.usuario != null){
+			this.usuario.setNombre(nombre);
+		}
+	}
+	
+	public String getNombreUsuario(){
+		String nombre = "";
+		if(this.usuario != null){
+			nombre = this.usuario.getNombre();
+		}
+		
+		return nombre;
+	}
+	
+	
+	public void setApellidoUsuario(String apellido){
+		if(this.usuario != null){
+			this.usuario.setApellido(apellido);
+		}
+	}
+	
+	public String getApellidoUsuario(){
+		String apellido = "";
+		if(this.usuario != null){
+			apellido = this.usuario.getApellido();
+		}
+		
+		return apellido;
+	}
+	
+	public void setIdentificacionUsuario(String identificacion){
+		if(this.usuario != null){
+			this.usuario.setIdentificacion(identificacion);
+		}
+	}
+	
+	public String getIdentificacionUsuario(){
+		String identificacion = "";
+		if(this.usuario != null){
+			identificacion = this.usuario.getIdentificacion();
+		}
+		
+		return identificacion;
+	}
+	
+	
+	public void setCorreoUsuario(String correo){
+		if(this.usuario != null){
+			this.usuario.setCorreo(correo);
+		}
+	}
+	
+	public String getCorreoUsuario(){
+		String correo = "";
+		if(this.usuario != null){
+			correo = this.usuario.getCorreo();
+		}
+		
+		return correo;
+	}
+	
+	
+	public void setDireccionUsuario(String direccion){
+		if(this.usuario != null){
+			this.usuario.setDireccion(direccion);
+		}
+	}
+	
+	public String getDireccionUsuario(){
+		String direccion = "";
+		if(this.usuario != null){
+			direccion = this.usuario.getDireccion();
+		}
+		
+		return direccion;
+	}
+	
+	
+	public void setEstadoUsuario(int estado){
+		if(this.usuario != null){
+			this.usuario.setEstado(estado);
+		}
+	}
+	
+	public int getEstadoUsuario(){
+		int estado = 0;
+		if(this.usuario != null){
+			estado = this.usuario.getEstado();
+		}
+		
+		return estado;
+	}
+	
+	
+	public void setUserUsuario(String usuario){
+		if(this.usuario != null){
+			this.usuario.setUsuario(usuario);
+		}
+	}
+	
+	public String getUserUsuario(){
+		String estado = "";
+		if(this.usuario != null){
+			estado = this.usuario.getUsuario();
+		}
+		
+		return estado;
+	}
+	
+	
+	
+	public void setContrasenaUsuario(String clave){
+		if(this.usuario != null){
+			this.usuario.setClave(clave);
+		}
+	}
+	
+	public String getContrasenaUsuario(){
+		String clave = "";
+		if(this.usuario != null){
+			clave = this.usuario.getClave();
+		}
+		
+		return clave;
+	}
+	
+	
+	
+	
+	public void closeFAjax(AjaxBehaviorEvent event){
+        this.visiblePopup=false;
+    }
+
 
 }
 
