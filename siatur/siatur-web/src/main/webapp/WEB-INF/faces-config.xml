@@ -38,6 +38,10 @@
 				<from-action>gestionar_requisitos</from-action>
 				<to-view-id>/faces/pages/gestionar_requisitos.xhtml</to-view-id>
 			</navigation-case>
+			<navigation-case>
+				<from-action>gestionar_cancelar</from-action>
+				<to-view-id>/faces/pages/gestionar_cancelar.xhtml</to-view-id>
+			</navigation-case>
 		</navigation-rule>
 
 
