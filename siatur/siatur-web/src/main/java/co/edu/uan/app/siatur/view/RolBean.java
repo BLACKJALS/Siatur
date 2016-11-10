@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
@@ -122,6 +124,37 @@ public class RolBean implements Serializable {
 		logger.info("Saliendo de validateSaveAction()");
 		return valid;
 	}
+	
+	public void editRol(ActionEvent event) {
+		logger.info("Entro a editRol(event:" + event + ")");
+		
+        UIComponent tmpComponent = event.getComponent();
+        while (null != tmpComponent && !(tmpComponent instanceof UIData)) {
+            tmpComponent = tmpComponent.getParent();
+        }
+        if (tmpComponent != null && (tmpComponent instanceof UIData)) {
+            Object tmpRowData = ((UIData) tmpComponent).getRowData();
+            if (tmpRowData instanceof Rol) {
+            	this.rol = (Rol) tmpRowData;
+            }
+        }
+
+		this.headerDialog = "Editar Rol";
+		this.openPopup();
+
+		logger.info("Saliendo de editRol(rol:" + rol + ")");
+
+	}
+	
+	public String cancelAction() {
+		logger.info("Entró a cancelAction()");
+
+		this.closedPopup();
+
+		logger.info("Saliendo de cancelAction()");
+		return PAGE_NAME;
+	}
+	
 
 	public String getHeaderDialog() {
 		return this.headerDialog;

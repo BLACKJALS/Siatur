@@ -10,67 +10,43 @@
 
 		<h:form styleClass="contentFeature">
 
-			<ace:panel header="Gestionar Usuarios">
+			<ace:panel header="Gestionar Temporadas">
 
 				<h:panelGroup>
-					<ace:dataTable id="dataTableUsuarios" value="#{usuarioBean.usuarioAll}"
+					<ace:dataTable id="dataTableTemporadas" value="#{temporadaBean.temporadaAll}"
 						var="_item">
 
 						<ace:column id="id">
 							<f:facet name="header">
 								<h:outputText value="ID" />
 							</f:facet>
-							<h:outputText id="usuarioId" value="#{_item.id}" />
+							<h:outputText id="temporadaId" value="#{_item.id}" />
 						</ace:column>
 
-						<ace:column id="nombre">
+						<ace:column id="fecha">
 							<f:facet name="header">
-								<h:outputText value="Nombre" />
+								<h:outputText value="Fecha" />
 							</f:facet>
-							<h:outputText id="usuarioNombre" value="#{_item.nombre}" />
+							<h:outputText id="temporadaFecha" value="#{_item.fecha}" />
 						</ace:column>
 						
-						<ace:column id="apellido">
+						<ace:column id="clasificacion">
 							<f:facet name="header">
-								<h:outputText value="Apellido" />
+								<h:outputText value="Clasificacion" />
 							</f:facet>
-							<h:outputText id="usuarioApellido" value="#{_item.apellido}" />
-						</ace:column>
-						
-						<ace:column id="identificacion">
-							<f:facet name="header">
-								<h:outputText value="Identificacion" />
-							</f:facet>
-							<h:outputText id="usuarioIdentificacion" value="#{_item.identificacion}" />
-						</ace:column>
-
-						<ace:column id="Correo">
-							<f:facet name="header">
-								<h:outputText value="Correo" />
-							</f:facet>
-							<h:outputText id="usuarioCorreo" value="#{_item.correo}" />
-						</ace:column>
-						
-						<ace:column id="Direccion">
-							<f:facet name="header">
-								<h:outputText value="Direccion" />
-							</f:facet>
-							<h:outputText id="usuarioDireccion" value="#{_item.direccion}" />
+							<h:outputText id="temporadaClasificacion" value="#{_item.clasificacion}" />
 						</ace:column>
 						
 						
-						<ace:column id="estado">
-							<f:facet name="header">
-								<h:outputText value="Estado" />
-							</f:facet>
-							<h:outputText id="usuarioEstado" value="#{_item.estado}" />
-						</ace:column>
+						
+						
+						
 
 						<ace:column id="acciones">
 							<f:facet name="header">
 
 								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
-									actionListener="#{usuarioBean.addUsuario}" type="button">
+									actionListener="#{TemporadaBean.addTemporada}" type="button">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
 
