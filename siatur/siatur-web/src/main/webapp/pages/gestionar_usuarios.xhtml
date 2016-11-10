@@ -8,7 +8,7 @@
 
 	<ui:define name="content">
 
-		<h:form styleClass="contentFeature">
+		<h:form id="form1" styleClass="contentFeature">
 
 			<ace:panel header="Gestionar Usuarios">
 
@@ -22,8 +22,21 @@
 							</f:facet>
 							<h:outputText id="usuarioId" value="#{_item.id}" />
 						</ace:column>
+						<ace:column id="Usuario">
+							<f:facet name="header">
+								<h:outputText value="Usuario" />
+							</f:facet>
+							<h:outputText id="userUsuario" value="#{_item.usuario}" />
+						</ace:column>
+						
+						<ace:column id="Contraseña">
+							<f:facet name="header">
+								<h:outputText value="Contraseña" />
+							</f:facet>
+							<h:outputText id="claveUsuario" value="#{_item.clave}" />
+						</ace:column>
 
-						<ace:column id="nombre">
+					<ace:column id="nombre">
 							<f:facet name="header">
 								<h:outputText value="Nombre" />
 							</f:facet>
@@ -73,37 +86,67 @@
 									actionListener="#{usuarioBean.addUsuario}" type="button">
 									<f:ajax execute="@this" render="@all" />
 								</h:commandButton>
-
-
-								<!-- 								<h:commandButton styleClass="btn_s_add" -->
-								<!-- 									onclick="ice.ace.instance('dialogRol').show();" type="button" /> -->
 							</f:facet>
 
 							<h:commandButton styleClass="btn_s_editar"
-								onclick="ice.ace.instance('dialogRol').hide();" type="button" />
+								onclick="ice.ace.instance('dialogUsuario').hide();" type="button" />
 						</ace:column>
 					</ace:dataTable>
 				</h:panelGroup>
 			</ace:panel>
+		</h:form>
 
-			<!-- Sección del Popup para capturar los datos del Rol -->
-<!-- 			<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}" -->
-<!-- 				header="#{rolBean.headerDialog}" draggable="true" modal="true" -->
-<!-- 				width="400"> -->
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Usuario -->
+				<ace:dialog id="dialogUsuario" visible="#{usuarioBean.visiblePopup}"
+					header="#{usuarioBean.headerDialog}" draggable="true" modal="true"
+					width="400">
+	
+					<h:panelGrid>
+						
+						
+						<ace:textEntry id="dialogUserUsuario" value="#{usuarioBean.userUsuario}" label="Usuario: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogContraseñaUsuario" value="#{usuarioBean.contrasenaUsuario}" label="Contraseña: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioNombre" value="#{usuarioBean.nombreUsuario}" label="Nombre: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioApellido" value="#{usuarioBean.apellidoUsuario}" label="Apellido: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioIdentificacion" value="#{usuarioBean.identificacionUsuario}" label="Identificacion: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						
+						<ace:textEntry id="dialogUsuarioCorreo" value="#{usuarioBean.correoUsuario}" label="Correo: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						
+						<ace:textEntry id="dialogUsuarioDireccion" value="#{usuarioBean.direccionUsuario}" label="Direccion: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioEstado" value="#{usuarioBean.estadoUsuario}" label="Estado: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
 
-<!-- 				<h:panelGrid> -->
-
-<!-- 					<ace:textEntry id="dialogRolNombre" value="#{rolBean.rol.nombre}" label="Nombre: " -->
-<!-- 						labelPosition="left" required="true" requiredIndicator="(*)"> -->
-<!-- 					</ace:textEntry> -->
-
-<!-- 					<ace:pushButton id="dialogRolBtnGuardar" -->
-<!-- 						action="#{rolBean.saveAction}" label="Guardar"> -->
-<!-- 					</ace:pushButton> -->
-
-<!-- 				</h:panelGrid> -->
-<!-- 			</ace:dialog> -->
-
+						<ace:pushButton id="dialogUsuarioBtnGuardar"
+							action="#{usuarioBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+	
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
 		</h:form>
 
 	</ui:define>

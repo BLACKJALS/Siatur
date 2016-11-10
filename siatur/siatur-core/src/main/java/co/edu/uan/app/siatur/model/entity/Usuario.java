@@ -45,6 +45,7 @@ public class Usuario implements Serializable{
 	private String correo;
 	
 	@Column(name = "usu_direccion", nullable = true)
+
 	private String direccion;
 	
 	
