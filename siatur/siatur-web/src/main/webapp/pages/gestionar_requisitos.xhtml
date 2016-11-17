@@ -8,7 +8,7 @@
 
 	<ui:define name="content">
 	
-		<h:form styleClass="contentFeature">
+		<h:form id="form1" styleClass="contentFeature">
 
 			<ace:panel header="Gestionar Requisitos">
 			
@@ -53,6 +53,11 @@
 				</h:panelGroup>
 			</ace:panel>
 
+		</h:form>
+		
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+
 			<!-- Sección del Popup para capturar los datos del Req -->
 			<ace:dialog id="dialogReq" visible="#{reqBean.visiblePopup}"
 				header="#{reqBean.headerDialog}" draggable="true" modal="true"
@@ -70,7 +75,7 @@
 
 				</h:panelGrid>
 			</ace:dialog>
-
+			</h:panelGroup>
 		</h:form>
 
 	</ui:define>

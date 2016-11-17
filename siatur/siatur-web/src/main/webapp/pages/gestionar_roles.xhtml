@@ -40,42 +40,50 @@
 						<ace:column id="acciones">
 							<f:facet name="header">
 
-									<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
-										actionListener="#{rolBean.addRol}" type="button">
-										<f:ajax execute="@this" render="@all"/>
-									</h:commandButton>
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{rolBean.addRol}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
 							</f:facet>
 
-							<h:commandButton styleClass="btn_s_editar"
-								onclick="ice.ace.instance('dialogRol').hide();" type="button" />
+							<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{rolBean.editRol}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
 						</ace:column>
 					</ace:dataTable>
 				</h:panelGroup>
 			</ace:panel>
 		</h:form>
-		
+
 		<h:form id="formDialog">
-		  	<h:panelGroup>
+			<h:panelGroup>
 				<!-- Sección del Popup para capturar los datos del Rol -->
 				<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
-					header="#{rolBean.headerDialog}" draggable="true" modal="true"
-					width="400">
-	
+					closable="false" header="#{rolBean.headerDialog}" draggable="true"
+					modal="true" width="400">
+
 					<h:panelGrid>
-	
-						<ace:textEntry id="dialogRolNombre" value="#{rolBean.nombreRol}" label="Nombre: "
-							labelPosition="left" required="true" requiredIndicator="(*)">
+
+						<ace:textEntry id="dialogRolNombre" value="#{rolBean.nombreRol}"
+							label="Nombre: " labelPosition="left" required="true"
+							requiredIndicator="(*)">
 						</ace:textEntry>
-	
+
 						<ace:pushButton id="dialogRolBtnGuardar"
 							action="#{rolBean.saveAction}" label="Guardar">
 						</ace:pushButton>
-	
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{rolBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+
 					</h:panelGrid>
 				</ace:dialog>
 			</h:panelGroup>
 		</h:form>
 
 	</ui:define>
+
 
 </ui:composition>
