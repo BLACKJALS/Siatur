@@ -1,5 +1,6 @@
 /build/
 siatur/siatur-web/src/main/webapp/WEB-INF/jboss-web.xml
+
 .classpath
 *.project
 .settings/.jsdtscope
@@ -8,3 +9,4 @@ siatur/siatur-web/src/main/webapp/WEB-INF/jboss-web.xml
 .settings/org.eclipse.wst.common.project.facet.core.xml
 *.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
+
