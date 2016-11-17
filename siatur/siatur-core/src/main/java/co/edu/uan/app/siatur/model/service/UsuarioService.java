@@ -30,12 +30,10 @@ public class UsuarioService {
 		
 		if(usr == null){
 			throw new IllegalArgumentException("No hay objeto usuario para guardar");
-		}			
-//		}else if(rol.getId() == null){
-//			this.em.persist(rol);
-//		}else if(rol.getId() != null){
-			newUsuario = this.em.merge(usr);
-//		}
+		}	
+		
+		newUsuario = this.em.merge(usr);
+
 		
 		return newUsuario;
 	}

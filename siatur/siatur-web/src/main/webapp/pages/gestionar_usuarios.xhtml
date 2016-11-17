@@ -88,8 +88,12 @@
 								</h:commandButton>
 							</f:facet>
 
-							<h:commandButton styleClass="btn_s_editar"
-								onclick="ice.ace.instance('dialogUsuario').hide();" type="button" />
+							
+							<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{usuarioBean.editUsuario}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
 						</ace:column>
 					</ace:dataTable>
 				</h:panelGroup>
@@ -100,8 +104,8 @@
 		  	<h:panelGroup>
 				<!-- Sección del Popup para capturar los datos del Usuario -->
 				<ace:dialog id="dialogUsuario" visible="#{usuarioBean.visiblePopup}"
-					header="#{usuarioBean.headerDialog}" draggable="true" modal="true"
-					width="400">
+					closable="false" header="#{usuarioBean.headerDialog}" draggable="true"
+					modal="true" width="400">
 	
 					<h:panelGrid>
 						
@@ -143,7 +147,11 @@
 						<ace:pushButton id="dialogUsuarioBtnGuardar"
 							action="#{usuarioBean.saveAction}" label="Guardar">
 						</ace:pushButton>
-	
+						
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{usuarioBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+						
 					</h:panelGrid>
 				</ace:dialog>
 			</h:panelGroup>

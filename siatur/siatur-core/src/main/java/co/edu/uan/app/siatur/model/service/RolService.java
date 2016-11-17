@@ -31,11 +31,8 @@ public class RolService {
 		if(rol == null){
 			throw new IllegalArgumentException("No hay objeto Rol para guardar");
 		}			
-//		}else if(rol.getId() == null){
-//			this.em.persist(rol);
-//		}else if(rol.getId() != null){
+
 			newRol = this.em.merge(rol);
-//		}
 		
 		return newRol;
 	}

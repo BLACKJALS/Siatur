@@ -46,8 +46,13 @@
 								</h:commandButton>
 							</f:facet>
 
-							<h:commandButton styleClass="btn_s_editar"
-								onclick="ice.ace.instance('dialogTermporada').hide();" type="button" />
+							
+						<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{temporadaBean.editUsuario}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
+							
 						</ace:column>
 					</ace:dataTable>
 				</h:panelGroup>
@@ -58,8 +63,8 @@
 		  	<h:panelGroup>
 				<!-- Sección del Popup para capturar los datos del Rol -->
 				<ace:dialog id="dialogTemporada" visible="#{temporadaBean.visiblePopup}"
-					header="#{temporadaBean.headerDialog}" draggable="true" modal="true"
-					width="400">
+					closable="false" header="#{tempradaBean.headerDialog}" draggable="true"
+					modal="true" width="400">
 	
 					<h:panelGrid>
 						
@@ -73,6 +78,10 @@
 	
 						<ace:pushButton id="dialogTemporadaBtnGuardar"
 							action="#{temporadaBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+						
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{temporadaBean.cancelAction}" label="Cancelar">
 						</ace:pushButton>
 	
 					</h:panelGrid>

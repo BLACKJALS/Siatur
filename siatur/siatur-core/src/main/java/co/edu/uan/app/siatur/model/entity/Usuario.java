@@ -45,8 +45,10 @@ public class Usuario implements Serializable{
 	private String correo;
 	
 	@Column(name = "usu_direccion", nullable = true)
-
 	private String direccion;
+	
+	@Column(name = "usu_editable", nullable = false)
+	private Boolean editable;
 	
 	
 	public Long getId() {
@@ -99,7 +101,7 @@ public class Usuario implements Serializable{
 	}
 	
 	public String getApellido() {
-		return nombre;
+		return apellido;
 	}
 
 	public void setApellido(String apellido) {
@@ -131,6 +133,16 @@ public class Usuario implements Serializable{
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public Boolean getEditable() {
+		return editable;
+	}
+
+	public void setEditable(Boolean editable) {
+		this.editable = editable;
+	}
+	
+	
 	
 	@Override
 	public int hashCode() {
