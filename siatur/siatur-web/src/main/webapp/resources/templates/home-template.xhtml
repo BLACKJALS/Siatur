@@ -48,12 +48,11 @@
 		<h:form>
 			<h:panelGroup styleClass="usuarioContent">
 				<h:outputText
-					value="Bienvenido #{sessionBean.nombreCompletoUsuario} (Última sesión:)  IP: " />
-				<h:outputText value="    " />
-				<h:commandButton alt="Cambiar Clave" styleClass="btn_s_cambio_clave"
-					action="correr" />
-				<h:outputText value="    " />
-				<h:commandButton alt="Salir" title="Salir" styleClass="btn_s_salir"
+					value="Bienvenido #{sessionBean.nombreCompletoUsuario} " /> <!-- (Última sesión:)  IP:  -->
+				<!-- <h:outputText value="this.nombre" /> -->
+				<!--<h:commandButton alt="Cambiar Clave" styleClass="btn_s_cambio_clave" action="correr" /> -->
+				<!-- <h:outputText value="   salir " /> -->
+				<h:commandButton alt="Salir" title="Salir" styleClass="btn_s_salir" value = "Cerrar sesión"
 					action="#{sessionBean.logout}" />
 			</h:panelGroup>
 

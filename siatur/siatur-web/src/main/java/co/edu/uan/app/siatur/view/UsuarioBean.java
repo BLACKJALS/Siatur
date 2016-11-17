@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
@@ -16,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import co.edu.uan.app.siatur.model.entity.Rol;
 import co.edu.uan.app.siatur.model.entity.Usuario;
 import co.edu.uan.app.siatur.model.pojo.Constantes;
 import co.edu.uan.app.siatur.model.service.UsuarioService;
@@ -70,6 +73,7 @@ public class UsuarioBean   implements Serializable{
 		logger.info("Entro a addUsuario(event:" + event + ")");
 
 		this.usuario = new Usuario();
+		this.usuario.setEditable(Boolean.TRUE);
 	    this.usuario.setVersion(1);
 		this.usuario.setNombre("");
 		this.usuario.setApellido("");
@@ -133,6 +137,40 @@ public class UsuarioBean   implements Serializable{
 		logger.info("Saliendo de validateSaveAction()");
 		return valid;
 	}
+	
+	
+	
+	public void editUsuario(ActionEvent event) {
+		logger.info("Entro a editUsuario(event:" + event + ")");
+		
+        UIComponent tmpComponent = event.getComponent();
+        while (null != tmpComponent && !(tmpComponent instanceof UIData)) {
+            tmpComponent = tmpComponent.getParent();
+        }
+        if (tmpComponent != null && (tmpComponent instanceof UIData)) {
+            Object tmpRowData = ((UIData) tmpComponent).getRowData();
+            if (tmpRowData instanceof Usuario) {
+            	this.usuario = (Usuario) tmpRowData;
+            }
+        }
+
+		this.headerDialog = "Editar Usuario";
+		this.openPopup();
+
+		logger.info("Saliendo de editUsuario(Usuario:" + usuario + ")");
+
+	}
+	
+	public String cancelAction() {
+		logger.info("Entró a cancelAction()");
+
+		this.closedPopup();
+
+		logger.info("Saliendo de cancelAction()");
+		return PAGE_NAME;
+	}
+	
+	
 	
 	public String getHeaderDialog() {
 		return this.headerDialog;

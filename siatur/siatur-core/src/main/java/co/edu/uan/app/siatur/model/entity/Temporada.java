@@ -28,6 +28,8 @@ public class Temporada implements Serializable{
 	@Column(name = "tmp_clasificacion")
 	private String clasificacion;
 	
+	@Column(name = "tmp_editable")
+	private boolean editable;
 	
 	public Long getId() {
 		return id;
@@ -62,7 +64,13 @@ public class Temporada implements Serializable{
 		this.clasificacion = clasificacion;
 	}
 	
-	
+	public Boolean getEditable() {
+		return editable;
+	}
+
+	public void setEditable(Boolean editable) {
+		this.editable = editable;
+	}
 	
 	@Override
 	public int hashCode() {

@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
@@ -17,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.edu.uan.app.siatur.model.entity.Temporada;
+import co.edu.uan.app.siatur.model.entity.Usuario;
 import co.edu.uan.app.siatur.model.pojo.Constantes;
 import co.edu.uan.app.siatur.model.service.TemporadaService;
 import co.edu.uan.app.siatur.util.FacesUtils;
@@ -70,6 +73,7 @@ public class TemporadaBean implements Serializable{
 		logger.info("Entro a addUsuario(event:" + event + ")");
 
 		this.temporada = new Temporada();
+		this.temporada.setEditable(Boolean.TRUE);
 		this.temporada.setFecha("");;
 		this.temporada.setClasificacion("");
 		
@@ -127,6 +131,41 @@ public class TemporadaBean implements Serializable{
 		logger.info("Saliendo de validateSaveAction()");
 		return valid;
 	}
+	
+	
+	
+	public void editUsuario(ActionEvent event) {
+		logger.info("Entro a editTemporada(event:" + event + ")");
+		
+        UIComponent tmpComponent = event.getComponent();
+        while (null != tmpComponent && !(tmpComponent instanceof UIData)) {
+            tmpComponent = tmpComponent.getParent();
+        }
+        if (tmpComponent != null && (tmpComponent instanceof UIData)) {
+            Object tmpRowData = ((UIData) tmpComponent).getRowData();
+            if (tmpRowData instanceof Temporada) {
+            	this.temporada = (Temporada) tmpRowData;
+            }
+        }
+
+		this.headerDialog = "Editar Usuario";
+		this.openPopup();
+
+		logger.info("Saliendo de editUsuario(Temporada:" + temporada + ")");
+
+	}
+	
+	public String cancelAction() {
+		logger.info("Entró a cancelAction()");
+
+		this.closedPopup();
+
+		logger.info("Saliendo de cancelAction()");
+		return PAGE_NAME;
+	}
+	
+	
+	
 	
 	public String getHeaderDialog() {
 		return this.headerDialog;
