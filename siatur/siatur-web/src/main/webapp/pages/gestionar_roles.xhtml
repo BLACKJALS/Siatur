@@ -13,6 +13,15 @@
 			<ace:panel header="Gestionar Roles">
 
 				<h:panelGroup>
+					
+					<ace:comboBox 	id="combo"
+									value="#{rolBean.selectItem}"
+									label="Selecione un Rol: " 
+									labelPosition="top"
+									>
+						<f:selectItems value="#{rolBean.listSelectItem}"/>
+					</ace:comboBox>
+				
 					<ace:dataTable id="dataTableRoles" value="#{rolBean.rolAll}"
 						var="_item">
 
@@ -84,6 +93,5 @@
 		</h:form>
 
 	</ui:define>
-
 
 </ui:composition>

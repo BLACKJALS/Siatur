@@ -1,6 +1,7 @@
 package co.edu.uan.app.siatur.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -37,6 +39,8 @@ public class RolBean implements Serializable {
 
 	private Rol rol;
 	private List<Rol> listRol;
+	private List<SelectItem> listSelectItem;
+	private SelectItem selectItem;
 	private boolean visiblePopup;
 
 	private String headerDialog;
@@ -200,6 +204,29 @@ public class RolBean implements Serializable {
 		return nombre;
 	}
 	
+	public List<SelectItem> getListSelectItem(){
+		
+		this.listSelectItem = new ArrayList<SelectItem>();
+		
+		if(this.listRol != null){
+			for (Rol rol : listRol) {
+				this.listSelectItem.add(new SelectItem(rol.getId(), rol.getNombre()));
+			}
+		}
+		                                               
+		return listSelectItem;
+	}
+	
+	
+	
+	public SelectItem getSelectItem() {
+		return selectItem;
+	}
+
+	public void setSelectItem(SelectItem selectItem) {
+		this.selectItem = selectItem;
+	}
+
 	/*
      *  if closing with a client side api, ensure a listener is used to
      *  update the visible value on the server
