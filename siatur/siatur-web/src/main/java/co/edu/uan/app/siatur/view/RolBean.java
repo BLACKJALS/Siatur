@@ -1,13 +1,18 @@
 package co.edu.uan.app.siatur.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.CustomScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIData;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,8 +23,8 @@ import co.edu.uan.app.siatur.model.pojo.Constantes;
 import co.edu.uan.app.siatur.model.service.RolService;
 import co.edu.uan.app.siatur.util.FacesUtils;
 
-@ManagedBean(name = RolBean.BEAN_NAME, eager = true)
-@SessionScoped
+@ManagedBean(name = RolBean.BEAN_NAME)
+@CustomScoped(value = "#{window}")
 public class RolBean implements Serializable {
 	/**
 	 * 
@@ -34,6 +39,8 @@ public class RolBean implements Serializable {
 
 	private Rol rol;
 	private List<Rol> listRol;
+	private List<SelectItem> listSelectItem;
+	private SelectItem selectItem;
 	private boolean visiblePopup;
 
 	private String headerDialog;
@@ -102,14 +109,18 @@ public class RolBean implements Serializable {
 		String detail = "";
 
 		if (this.rol == null) {
+			
 			detail = "No existe un objeto ROL inicializado";
 			valid = false;
+			
 		} else if (StringUtils.isBlank(this.rol.getNombre())) {
+			
 			detail = "Se debe ingresar el nombre del rol";
 			valid = false;
 		}
 
 		if (!valid) {
+			
 			FacesUtils.addMessageError("Guardar Rol", "Error al guardar el Rol", detail);
 			logger.error("Error validando el rol a guardar. "+detail);
 		}
@@ -117,6 +128,37 @@ public class RolBean implements Serializable {
 		logger.info("Saliendo de validateSaveAction()");
 		return valid;
 	}
+	
+	public void editRol(ActionEvent event) {
+		logger.info("Entro a editRol(event:" + event + ")");
+		
+        UIComponent tmpComponent = event.getComponent();
+        while (null != tmpComponent && !(tmpComponent instanceof UIData)) {
+            tmpComponent = tmpComponent.getParent();
+        }
+        if (tmpComponent != null && (tmpComponent instanceof UIData)) {
+            Object tmpRowData = ((UIData) tmpComponent).getRowData();
+            if (tmpRowData instanceof Rol) {
+            	this.rol = (Rol) tmpRowData;
+            }
+        }
+
+		this.headerDialog = "Editar Rol";
+		this.openPopup();
+
+		logger.info("Saliendo de editRol(rol:" + rol + ")");
+
+	}
+	
+	public String cancelAction() {
+		logger.info("Entró a cancelAction()");
+
+		this.closedPopup();
+
+		logger.info("Saliendo de cancelAction()");
+		return PAGE_NAME;
+	}
+	
 
 	public String getHeaderDialog() {
 		return this.headerDialog;
@@ -146,5 +188,51 @@ public class RolBean implements Serializable {
 	public void setVisiblePopup(boolean visiblePopup) {
 		this.visiblePopup = visiblePopup;
 	}
+	
+	public void setNombreRol(String nombre){
+		if(this.rol != null){
+			this.rol.setNombre(nombre);
+		}
+	}
+	
+	public String getNombreRol(){
+		String nombre = "";
+		if(this.rol != null){
+			nombre = this.rol.getNombre();
+		}
+		
+		return nombre;
+	}
+	
+	public List<SelectItem> getListSelectItem(){
+		
+		this.listSelectItem = new ArrayList<SelectItem>();
+		
+		if(this.listRol != null){
+			for (Rol rol : listRol) {
+				this.listSelectItem.add(new SelectItem(rol.getId(), rol.getNombre()));
+			}
+		}
+		                                               
+		return listSelectItem;
+	}
+	
+	
+	
+	public SelectItem getSelectItem() {
+		return selectItem;
+	}
+
+	public void setSelectItem(SelectItem selectItem) {
+		this.selectItem = selectItem;
+	}
+
+	/*
+     *  if closing with a client side api, ensure a listener is used to
+     *  update the visible value on the server
+     */
+    public void closeFAjax(AjaxBehaviorEvent event){
+        this.visiblePopup=false;
+    }
 
 }
