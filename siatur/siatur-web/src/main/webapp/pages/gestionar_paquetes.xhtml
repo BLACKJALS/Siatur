@@ -1,0 +1,130 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form styleClass="contentFeature">
+
+			<ace:panel header="Gestionar paquetes">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTablePaquetes" value="#{paqueteBean.paqueteAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="paqueteId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="ciudad">
+							<f:facet name="header">
+								<h:outputText value="Ciudad" />
+							</f:facet>
+							<h:outputText id="paqueteCiudad" value="#{_item.ciudad}" />
+						</ace:column>
+
+						<ace:column id="hotel">
+							<f:facet name="header">
+								<h:outputText value="Hotel" />
+							</f:facet>
+							<h:outputText id="paqueteHotel" value="#{_item.hotel}" />
+						</ace:column>
+						
+						<ace:column id="comidas">
+							<f:facet name="header">
+								<h:outputText value="Comidas" />
+							</f:facet>
+							<h:outputText id="paqueteComidas" value="#{_item.comidas}" />
+						</ace:column>
+						
+						
+						<ace:column id="precio">
+							<f:facet name="header">
+								<h:outputText value="Precio" />
+							</f:facet>
+							<h:outputText id="paquetePrecio" value="#{_item.precio}" />
+						</ace:column>
+						
+						<ace:column id="sitios">
+							<f:facet name="header">
+								<h:outputText value="Sitios" />
+							</f:facet>
+							<h:outputText id="paqueteSitios" value="#{_item.sitios}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{paqueteBean.addPaquete}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{paqueteBean.editPaquete}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+
+		</h:form>
+		
+		
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Usuario -->
+				<ace:dialog id="dialogPaquete" visible="#{paqueteBean.visiblePopup}"
+					closable="false" header="#{paqueteBean.headerDialog}" draggable="true"
+					modal="true" width="400">
+	
+					<h:panelGrid>
+						
+						
+						<ace:textEntry id="dialogCiudadPaquete" value="#{paqueteBean.ciudadPaquete}" label="Ciudad: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogHotelPaquete" value="#{paqueteBean.hotelPaquete}" label="Hotel: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogComidasPaquete" value="#{paqueteBean.comidasPaquete}" label="Comidas: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogSitiosPaquete" value="#{paqueteBean.sitiosPaquete}" label="Sitios: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogPrecioPaquete" value="#{paqueteBean.precioPaquete}" label="Precios: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+
+						<ace:pushButton id="dialogPaqueteBtnGuardar"
+							action="#{paqueteBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+						
+						<ace:pushButton id="dialogRPaqueteBtnCancelar"
+							action="#{paqueteBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+						
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
