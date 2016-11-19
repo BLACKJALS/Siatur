@@ -41,6 +41,10 @@
 				<from-action>gestionar_temporadas</from-action>
 				<to-view-id>/faces/pages/gestionar_temporadas.xhtml</to-view-id>
 			</navigation-case>
+			<navigation-case>
+				<from-action>gestionar_paquetes</from-action>
+				<to-view-id>/faces/pages/gestionar_paquetes.xhtml</to-view-id>
+			</navigation-case>
 		</navigation-rule>
 
 
